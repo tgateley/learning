@@ -2,29 +2,31 @@ import functions
 import FreeSimpleGUI as sg
 import time
 
+now = time.strftime("%b %d, %Y")
 sg.theme("DarkBlue")
 
-clock = sg.Text('', key='clock')
+clock = sg.Text(f"{now}", key='clock')
 label = sg.Text("Type in a to-do")
+
 input_box = sg.InputText(tooltip="Enter todo", key="todo")
-add_button = sg.Button("Add")
 list_box = sg.Listbox(values=functions.get_todos(), key='todos',
                       enable_events=True, size=(45, 10))
+
+add_button = sg.Button(size=2, image_source="add.png", tooltip="Add todo", key="Add")
 edit_button = sg.Button("Edit")
-complete_button = sg.Button("Complete")
-exit_button = sg.Button("Exit")
+complete_button = sg.Button("Complete", button_color="Green")
+exit_button = sg.Button("Exit", button_color="Red")
 
 window = sg.Window('My To-DO Ap',
                    layout=[[clock],
                            [label],
                            [input_box, add_button],
-                           [list_box, edit_button, complete_button],
-                           [exit_button]],
+                           [list_box],
+                           [edit_button, complete_button, exit_button]],
                    font=('Helvetica', 20))
 
 while True:
-    event, values = window.read(timeout=900)
-    window["clock"].update(value=time.strftime("%b %d, %Y %H:%M:%S"))
+    event, values = window.read()
 
     match event:
         case "Add":
@@ -33,6 +35,7 @@ while True:
             todos.append(new_todo)
             functions.write_todos(todos)
             window['todos'].update(values=todos)
+            window['todo'].update(value='')
 
         case "Edit":
             try:
