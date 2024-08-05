@@ -1,3 +1,3 @@
-water plants
-replace car themostat
-eat
+sweep
+vacuum
+call mechanic about thermostat
