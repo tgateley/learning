@@ -1,12 +1,10 @@
-# does the same as todolist, but it identical to Ardit's code
-# from functions import get_todos, write_todos
-
 import functions
 import time
 
+now = time.strftime("%b %d, %Y %H:%M:%S")
+print("Is is", now)
+
 while True:
-    now = time.strftime("%b %d, %Y %H:%M:%S")
-    print("Is is", now)
     user_action = input("Add, show, edit, complete, or exit Todo list: ")
     user_action = user_action.strip()
 

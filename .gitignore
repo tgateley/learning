@@ -1,0 +1,8 @@
+/.venv/
+.idea
+bonus
+experiments
+exercises
+files
+journal
+test.py
